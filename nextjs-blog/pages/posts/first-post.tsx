@@ -4,7 +4,6 @@ import { useState } from "react";
 import Layout from "../../components/layout";
 
 export default function FirstPost() {
-  const [file, setFile] = useState<File>()
   return (
     <Layout>
       <Head>
@@ -15,9 +14,17 @@ export default function FirstPost() {
       </Link>
       <h1>Upload excel</h1>
       <div>
-        <input type="file" onChange={(e: any) => {setFile(e.target.files)}}/>
+        <form
+          ref="uploadForm"
+          id="uploadForm"
+          action="http://localhost:3001/upload"
+          method="post"
+          encType="multipart/form-data"
+        >
+          <input type="file" name="sampleFile" />
+          <input type="submit" value="Upload!" />
+        </form>
       </div>
-      {/* test */}
     </Layout>
   );
 }
